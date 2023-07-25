@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Csuszka es aktiv gomb</title>
+</head>
+
+
+       <!--------------------------- JELENLEG NINCS AKTIVÁLVA EGYIK SEM --------------------------------------
+        ------------------------------EGY RÉSZÉT MÁSIK FELADATBA HASZNÁLTAM FEL ---------------------------------------->
+<body>
+      <input type="range" id = "test" value = "120" class = "test'" min = "40" max = "200">  <br>
+  <p> <span id = "value1"></span>kg</p>
+  <input type="range" id = "mag" value = "170" class = "mag" min = "120" max = "220">  <br> 
+  <p> <span id = "value2"></span>cm</p>
+  <button  onclick  = "aktivGomb()"></button>
+
+  <script>
+
+    // ----------------------------------------- NO, FERFI AKTÍV GOMB I. ------------------------
+
+// Az aktív gomb azonosítóját tároló változó
+let aktivGomb = null;
+
+// Függvény az aktív gomb beállítására
+function setNem(gombId) {
+  aktivGomb = gombId;
+  // Először távolítsuk el az "active" osztályt az előzőleg aktív gombról (ha van ilyen)
+  if (aktivGomb === "no") {
+    aktivGomb.classList.remove("active");
+  }
+  if (aktivGomb === "ferfi"){
+    aktivGomb.classList.remove("active");
+  }
+
+  // Az aktuális gombot állítsuk be az aktívnak
+  aktivGomb = document.getElementById(gombId);
+  aktivGomb.classList.add("active");
+}
+
+// --------------------------------------------- AKTÍV GOMB II: ----------------------------------
+
+let aktivGomb2 = null;
+
+// Függvény az aktív gomb beállítására
+function setNem(gombId) {
+  if (aktivGomb2) {
+    aktivGomb2.classList.remove("active");
+  }
+  aktivGomb2 = document.getElementById(gombId);
+  aktivGomb2.classList.add("active");
+}
+
+// Az oldal betöltésekor beállítjuk  az alapértelmezett aktív gombot
+window.onload = function () {
+  // Itt választjuk ki az alapértelmezett aktív gombot, jelen esetben a 'no' gombot:
+  const alapertelmezettGomb = document.getElementById("no");
+  setNem(alapertelmezettGomb.id); 
+
+};
+
+// ------------------------------------------------ CSÚSZKA ----------------------------------------
+    
+    let slider = document.getElementById("csuszka1");
+    let output = document.getElementById("value1");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+    output.innerHTML = slider.value;   // vagy this.value ... ugyanazt tudja,  mint a slider.value
+    }
+
+    let slider2 = document.getElementById("csuszka2");
+    let output2 = document.getElementById("value2");
+    output2.innerHTML = slider2.value;
+
+    slider2.oninput = function(){
+    output2.innerHTML = this.value;
+    }
+/*
+    let nemValasztva = true;
+    let nem;
+
+    function valasztas(neme) {
+      nem = neme;
+      nemValasztva = false;
+    } --> 
+        
+  </script>
+</body>
+</html>
